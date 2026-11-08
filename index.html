@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholarship & Government Scheme Eligibility Checker</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f0f4f8;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: #123b70;
+    color: white;
+    padding: 25px 15px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 15px;
+}
+
+/* Navigation */
+nav {
+    background: #08294f;
+    padding: 13px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 18px;
+    font-weight: bold;
+}
+
+/* Main container */
+.container {
+    max-width: 850px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #123b70;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.section-title {
+    color: #123b70;
+    margin: 22px 0 12px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 8px;
+}
+
+label {
+    display: block;
+    margin-top: 14px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 7px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+button {
+    background: #1766b1;
+    color: white;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    margin-top: 25px;
+    border-radius: 6px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0b457e;
+}
+
+/* Results */
+#results {
+    display: none;
+    margin-top: 30px;
+}
+
+.result-card {
+    background: #f4f8ff;
+    border-left: 5px solid #1766b1;
+    padding: 18px;
+    margin: 15px 0;
+    border-radius: 7px;
+}
+
+.result-card h3 {
+    color: #123b70;
+    margin-bottom: 10px;
+}
+
+.result-card p {
+    margin: 7px 0;
+    line-height: 1.5;
+}
+
+.status {
+    color: #137a3d;
+    font-weight: bold;
+}
+
+footer {
+    background: #08294f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+@media(max-width:600px) {
+    .container {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 21px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 7px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Scholarship & Government Scheme Eligibility Checker</h1>
+    <p>Find Scholarships and Government Benefits Suitable for You</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#checker">Eligibility Checker</a>
+    <a href="#about">About Us</a>
+</nav>
+
+<div class="container" id="home">
+
+    <h2>Student Eligibility Registration</h2>
+
+    <p style="text-align:center;color:#666;">
+        Enter your details below to discover suitable scholarships
+        and government welfare schemes.
+    </p>
+
+    <form id="eligibilityForm">
+
+        <h3 class="section-title">Personal Information</h3>
+
+        <label>Student Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label>Age</label>
+        <input type="number" id="age" min="1" max="100" required>
+
+        <label>Gender</label>
+        <select id="gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <label>State</label>
+        <select id="state" required>
+            <option value="">Select State</option>
+            <option>Karnataka</option>
+            <option>Kerala</option>
+            <option>Tamil Nadu</option>
+            <option>Andhra Pradesh</option>
+            <option>Telangana</option>
+            <option>Maharashtra</option>
+            <option>Delhi</option>
+            <option>Uttar Pradesh</option>
+            <option>Other</option>
+        </select>
+
+        <label>Category</label>
+        <select id="category" required>
+            <option value="">Select Category</option>
+            <option>General</option>
+            <option>OBC</option>
+            <option>SC</option>
+            <option>ST</option>
+            <option>EWS</option>
+            <option>Minority</option>
+        </select>
+
+        <h3 class="section-title">Academic Information</h3>
+
+        <label>Current Education Level</label>
+        <select id="education" required>
+            <option value="">Select Education</option>
+            <option>School</option>
+            <option>PUC / Class 11-12</option>
+            <option>Diploma</option>
+            <option>Undergraduate</option>
+            <option>Postgraduate</option>
+            <option>PhD</option>
+        </select>
+
+        <label>Course</label>
+        <input type="text" id="course" placeholder="Enter your course" required>
+
+        <label>Previous Year Marks (%)</label>
+        <input type="number" id="marks" min="0" max="100"
+        placeholder="Enter marks" required>
+
+        <h3 class="section-title">Financial Information</h3>
+
+        <label>Annual Family Income (₹)</label>
+        <input type="number" id="income"
+        min="0" placeholder="Enter annual income" required>
+
+        <label>Disability Status</label>
+        <select id="disability">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <button type="submit">
+            Check Scholarship Eligibility
+        </button>
+
+    </form>
+
+    <div id="results">
+        <h2>Scholarship & Scheme Results</h2>
+        <div id="resultContent"></div>
+        <button onclick="window.print()">Print Results</button>
+        <button onclick="location.reload()">Check Another Student</button>
+    </div>
+
+</div>
+
+<div class="container" id="about">
+    <h2>About This Project</h2>
+
+    <p style="line-height:1.8;text-align:justify;">
+        The Scholarship and Government Scheme Eligibility Checker
+        is a student-friendly web application designed to help
+        students identify scholarships and welfare schemes based
+        on their personal, academic and financial information.
+
+        It helps students discover possible opportunities and
+        understand the basic conditions required to apply.
+    </p>
+</div>
+
+<footer>
+    <p>© 2026 Scholarship & Government Scheme Eligibility Checker</p>
+    <p>Developed for Student Welfare and Educational Support</p>
+</footer>
+
+<script>
+
+document.getElementById("eligibilityForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let age = Number(document.getElementById("age").value);
+    let gender = document.getElementById("gender").value;
+    let state = document.getElementById("state").value;
+    let category = document.getElementById("category").value;
+    let education = document.getElementById("education").value;
+    let marks = Number(document.getElementById("marks").value);
+    let income = Number(document.getElementById("income").value);
+    let disability = document.getElementById("disability").value;
+
+    let results = [];
+
+    // Merit-based scholarship (indicative filter)
+    if (marks >= 75 && income <= 800000 &&
+        ["Undergraduate", "Postgraduate"].includes(education)) {
+        results.push({
+            title: "Central Sector Scholarship (CSSS)",
+            description: "Potential merit-based scholarship for eligible college and university students.",
+            link: "https://scholarships.gov.in/"
+        });
+    }
+
+    // SC Scholarship
+    if (category === "SC" && income <= 250000 &&
+        education !== "School") {
+        results.push({
+            title: "Post-Matric Scholarship for SC Students",
+            description: "Potential financial support for eligible SC students pursuing post-matric education.",
+            link: "https://scholarships.gov.in/"
+        });
+    }
+
+    // ST Scholarship
+    if (category === "ST" && income <= 250000 &&
+        education !== "School") {
+        results.push({
+            title: "Post-Matric Scholarship for ST Students",
+            description: "Potential educational assistance for eligible ST students.",
+            link: "https://scholarships.gov.in/"
+        });
+    }
+
+    // OBC Scholarship
+    if (category === "OBC" && income <= 250000 &&
+        education !== "School") {
+        results.push({
+            title: "Post-Matric Scholarship for OBC Students",
+            description: "Potential scholarship support subject to applicable state and central rules.",
+            link: "https://scholarships.gov.in/"
+        });
+    }
+
+    // Girl student scholarship
+    if (gender === "Female" &&
+        ["Diploma", "Undergraduate"].includes(education)) {
+        results.push({
+            title: "AICTE Pragati Scholarship",
+            description: "Potential scholarship opportunity for eligible girl students in approved technical courses.",
+            link: "https://scholarships.gov.in/"
+        });
+    }
+
+    // Disability scholarship
+    if (disability === "Yes") {
+        results.push({
+            title: "Scholarship for Students with Disabilities",
+            description: "Explore disability-related scholarship opportunities and applicable conditions.",
+            link: "https://scholarships.gov.in/"
+        });
+    }
+
+    // Karnataka state schemes
+    if (state === "Karnataka") {
+        results.push({
+            title: "Karnataka State Scholarship Portal (SSP)",
+            description: "Explore state scholarship programmes based on domicile, category, income and course.",
+            link: "https://ssp.postmatric.karnataka.gov.in/"
+        });
+    }
+
+    let resultHTML = `
+        <div class="result-card">
+            <h3>Hello, ${escapeHTML(name)}!</h3>
+            <p>Your profile has been checked successfully.</p>
+            <p><b>Category:</b> ${escapeHTML(category)}</p>
+            <p><b>Education:</b> ${escapeHTML(education)}</p>
+            <p><b>Annual Income:</b> ₹${income.toLocaleString("en-IN")}</p>
+            <p><b>Potential Matches:</b> ${results.length}</p>
+        </div>
+    `;
+
+    if (results.length > 0) {
+
+        results.forEach(function(item) {
+
+            resultHTML += `
+                <div class="result-card">
+                    <h3>${escapeHTML(item.title)}</h3>
+                    <p>${escapeHTML(item.description)}</p>
+                    <p class="status">
+                        Potential Match - Verify Official Eligibility
+                    </p>
+                    <a href="${item.link}" target="_blank"
+                    rel="noopener noreferrer">
+                        Visit Official Portal →
+                    </a>
+                </div>
+            `;
+
+        });
+
+    } else {
+
+        resultHTML += `
+            <div class="result-card">
+                <h3>No Direct Matches Found</h3>
+                <p>Please explore additional government scholarship
+                programmes and verify their individual eligibility
+                conditions.</p>
+                <a href="https://scholarships.gov.in/"
+                target="_blank" rel="noopener noreferrer">
+                    Explore National Scholarship Portal →
+                </a>
+            </div>
+        `;
+
+    }
+
+    document.getElementById("resultContent").innerHTML =
+    resultHTML;
+
+    document.getElementById("results").style.display = "block";
+
+    document.getElementById("eligibilityForm").style.display = "none";
+
+    document.getElementById("results").scrollIntoView({
+        behavior: "smooth"
+    });
+
+});
+
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, function(char) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[char];
+    });
+}
+
+</script>
+
+</body>
+</html>
